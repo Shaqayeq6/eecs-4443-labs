@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background image -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/calm" />
+
+    <!-- Soft overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_overlay" />
+
+    <!-- Content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Header -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lab3"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="#1D1D1D"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add tasks, save locally, and use gestures."
+                    android:textSize="14sp"
+                    android:textColor="#6A6A6A"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="18dp"/>
+
+                <!-- Glass Card: Form -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/glass_card"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New Task"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#1D1D1D"/>
+
+                    <EditText
+                        android:id="@+id/etTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Title (required)"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/input_glass"
+                        android:padding="14dp"
+                        android:textSize="14sp"
+                        android:inputType="textPersonName"/>
+
+                    <EditText
+                        android:id="@+id/etDeadline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Deadline (required) - tap to pick"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/input_glass"
+                        android:padding="14dp"
+                        android:textSize="14sp"
+                        android:focusable="false"
+                        android:clickable="true"/>
+
+                    <EditText
+                        android:id="@+id/etNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Notes (optional)"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/input_glass"
+                        android:padding="14dp"
+                        android:textSize="14sp"
+                        android:minLines="3"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Storage Method"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="#1D1D1D"
+                        android:layout_marginTop="14dp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPrefs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SharedPreferences"
+
+                            android:checked="true"/>
+
+                        <RadioButton
+                            android:id="@+id/rbSqlite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SQLite"
+                            app:backgroundTint="@android:color/transparent"
+                            android:layout_marginStart="16dp"/>
+                    </RadioGroup>
+
+                    <com.google.android.material.button.MaterialButton
+
+                        android:id="@+id/btnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Save Task"
+                        android:textAllCaps="false"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/btn_pill_mint"
+                        android:elevation="2dp"
+                        app:backgroundTint="@android:color/transparent"
+                        app:rippleColor="#22FFFFFF"
+                        android:stateListAnimator="@null"/>
+
+
+
+                </LinearLayout>
+
+                <!-- Glass Card: List -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/glass_card"
+                    android:padding="20dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="14dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Saved Tasks"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#1D1D1D"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvTasks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lab3 • by Shaqayeq Salimy"
+                    android:textColor="#7A7A7A"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
